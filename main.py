@@ -156,13 +156,20 @@ def task(data_proxy):
         data_proxy.setOnedata ( 1, 3, 803 )
         print ( 'Tack', data_proxy.getdata ( slice ( 0, 10 ) ) )
 
+def visu():
+    app = QtWidgets.QApplication ( sys.argv )
+    window = MainWindow ()
+    window.show ()
+    app.exec ()
+    # data_proxy.setOnedata ( 1, 3, 703 )
+    # print ( 'visu', data_proxy.getdata ( slice ( 0, 10 ) ) )
 
 # protect the entry point
 if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
-    window = MainWindow()
-    window.show()
-    app.exec()
+    # app = QtWidgets.QApplication(sys.argv)
+    # window = MainWindow()
+    # window.show()
+    # app.exec()
 
     # register the a python class with the custom manager
     CustomManager.register ( 'ArrayHelper', ArrayHelper )
@@ -180,10 +187,14 @@ if __name__ == '__main__':
         data_proxy.setOnedata ( 1, 3, 403 )
         print ( data_proxy.getdata ( slice ( 0, 10 ) ) )
 
-        process = Process ( target=task, args=(data_proxy,) )
+        process1 = Process ( target=task, args=(data_proxy,) )
 
-        process.start ()
+        process2 = Process ( target=visu, args=() )
 
-        process.join ()
+        process1.start ()
+
+        process2.start ()
+
+        process1.join ()
 
 # print ( 'Out', data_proxy.getdata(slice(0,10)))
