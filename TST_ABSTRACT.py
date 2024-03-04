@@ -41,21 +41,23 @@ class PandasModel(QAbstractTableModel):
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-
         self.table = QTableView()
 
-        data = np.array([
-          [1, 9, 2],
-          [1, 0, -1],
-          [3, 5, 2],
-          [3, 3, 2],
-          [5, 8, 9],
-        ])
-
+    def setData(self):
         self.model = PandasModel(data)
         self.table.setModel(self.model)
-
         self.setCentralWidget(self.table)
+
+
+
+
+data = np.array([
+  [1, 9, 2],
+  [1, 0, -1],
+  [3, 5, 2],
+  [3, 3, 2],
+  [5, 8, 9],
+])
 
 class CustomManager (BaseManager):
     # nothing
@@ -76,25 +78,37 @@ class ArrayHelper ():
 
     def setOnedata(self, row, col, value):
         self.array[row][col] = value
+    def getArray(self):
+        return self.array
 
     # call functions on the numpy array
     def sum(self):
         return self.array.sum ()
 
 def task(data_proxy):
-    # for i in range ( 19 ):
+    # for i in range ( 33 ):
     while (True):
         # report details of the array
         print ( f'Array sum (in child): {data_proxy.sum ()}' )
+
         data_proxy.setOnedata ( 1, 3, 803 )
         print ( 'Tack', data_proxy.getdata ( slice ( 0, 10 ) ) )
+        # global data = data_proxy.getArray
+def visu(data_proxy):
+    global data
 
-def visu():
-    # data_proxy.setOnedata ( 1, 3, 308 )
-    # print ( 'Visu', data_proxy.getdata ( slice ( 0, 10 ) ) )
+    # data = data_proxy.data_proxy.getdata ( slice ( 0, 10 ) ) )
     app = QApplication ( sys.argv )
+
     window = MainWindow ()
+    print ( "visu", data_proxy.getdata ( slice ( 0, 10 ) ) )
+
+    # window.setData(data_proxy.getArray)
+    # global data = data_proxy.getArray ()
+    # print("visu", data_proxy.getdata(slice(0, 10 )))
     window.show ()
+    data = data_proxy.getdata ( slice ( 0, 10 ) )
+    window.setData ()
     app.exec ()
     # if 1 == 1:
 CustomManager.register ( 'ArrayHelper', ArrayHelper )
@@ -108,10 +122,11 @@ with CustomManager () as manager:
     # access data in the array
     # data_proxy.setdata ( slice ( 1, 3 ), 880 )
     data_proxy.setOnedata ( 1, 3, 403 )
-    print ( data_proxy.getdata ( slice ( 0, 10 ) ) )
+    # print ( data_proxy.getdata ( slice ( 0, 10 ) ) )
+    # data = data_proxy.getArray()
 
-
-    process_2 = Process ( target=visu, args=(), daemon= True )
+    print("data_proxy =", data)
+    process_2 = Process ( target=visu, args=(data_proxy,), daemon= True )
     process_1 = Process ( target=task, args=(data_proxy,), daemon= True )
     process_2.start()
     process_1.start ()
