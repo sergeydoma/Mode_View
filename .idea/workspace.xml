@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c10c01c5-91ed-4cbc-9c17-462d15646eb8" name="Changes" comment="Работает 2a потокa, отображение через qView">
+    <list default="true" id="c10c01c5-91ed-4cbc-9c17-462d15646eb8" name="Changes" comment="Ускорил за счет внутреннего таймера">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ARRAY_5.py" beforeDir="false" afterPath="$PROJECT_DIR$/ARRAY_5.py" afterDir="false" />
     </list>
@@ -302,7 +302,23 @@
       <option name="project" value="LOCAL" />
       <updated>1709651878603</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Убираю 1 поток">
+      <option name="closed" value="true" />
+      <created>1709657848792</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1709657848792</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Ускорил за счет внутреннего таймера">
+      <option name="closed" value="true" />
+      <created>1709660171431</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1709660171431</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -325,7 +341,9 @@
     <MESSAGE value="Работает 2a потокa, main в отдельном потоке" />
     <MESSAGE value="Работает 2a потокa, вроде как дышит" />
     <MESSAGE value="Работает 2a потокa, отображение через qView" />
-    <option name="LAST_COMMIT_MESSAGE" value="Работает 2a потокa, отображение через qView" />
+    <MESSAGE value="Убираю 1 поток" />
+    <MESSAGE value="Ускорил за счет внутреннего таймера" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ускорил за счет внутреннего таймера" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

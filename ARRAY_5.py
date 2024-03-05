@@ -69,7 +69,7 @@ class MainWindow(QMainWindow):
         self.timer.timeout.connect(self.update_table)
 
         # self.timer.timeout(self.update_table)
-        self.timer.start(60 * 100)
+        self.timer.start(60 * 10)
 
         # self.update_table()
         # self.model.select()
@@ -114,7 +114,7 @@ def task(array):
         data[1][1] = 300
         # confirm change
         print(f'Child\n{data}')
-        time.sleep(3)
+        time.sleep(1)
 
 def visu(array):
 
@@ -149,10 +149,10 @@ if 1 == 1:
     print(f'Parent\n{data}')
     # create a child process
     child1 = Process(target=task, args=(array,), daemon= False)
-    child2 = Process(target=visu, args=(array,), daemon=False)
+    child2 = Process(target=visu, args=(array,), daemon=True)
     # start the child process
-    child1.start()
     child2.start()
+    child1.start()
     # wait for the child process to complete
     child2.join()
     # check some data in the shared array
