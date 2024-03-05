@@ -1,4 +1,5 @@
 import sys
+import time
 from multiprocessing import Process
 from multiprocessing.managers import BaseManager
 
@@ -43,10 +44,11 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.table = QTableView()
 
-    def setData(self):
-        self.model = PandasModel(data)
+    def setData(self, _data):
+        self.model = PandasModel(_data)
         self.table.setModel(self.model)
         self.setCentralWidget(self.table)
+        self.model.layoutChanged.emit()
 
 
 
@@ -58,6 +60,7 @@ data = np.array([
   [3, 3, 2],
   [5, 8, 9],
 ])
+i = 0
 
 class CustomManager (BaseManager):
     # nothing
@@ -86,54 +89,63 @@ class ArrayHelper ():
         return self.array.sum ()
 
 def task(data_proxy):
-    # for i in range ( 33 ):
-    while (True):
+    for i in range(3):
+    # while (True):
+        global data
         # report details of the array
-        print ( f'Array sum (in child): {data_proxy.sum ()}' )
+        print(f'Array sum (in child): {data_proxy.sum ()}')
+        data_proxy.setOnedata(1, 3, 803+i)
+        print('Tack', data_proxy.getdata(slice(0, 10 ) ) )
+        data = data_proxy.getdata(slice(0, 10))
+        time.sleep(1)
+# for i in range (33):
+#     i=i+1
+#     print("OB1 =", i)
+print (data)
 
-        data_proxy.setOnedata ( 1, 3, 803 )
-        print ( 'Tack', data_proxy.getdata ( slice ( 0, 10 ) ) )
-        # global data = data_proxy.getArray
 def visu(data_proxy):
-    global data
-
+    # global data
+    global i
+    i = i+1
+    print("циклы = ", i)
     # data = data_proxy.data_proxy.getdata ( slice ( 0, 10 ) ) )
-    app = QApplication ( sys.argv )
-
-    window = MainWindow ()
-    print ( "visu", data_proxy.getdata ( slice ( 0, 10 ) ) )
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    print("visu", data_proxy.getdata(slice(0, 10)))
 
     # window.setData(data_proxy.getArray)
     # global data = data_proxy.getArray ()
     # print("visu", data_proxy.getdata(slice(0, 10 )))
     window.show ()
     data = data_proxy.getdata ( slice ( 0, 10 ) )
-    window.setData ()
+    window.setData (data)
     app.exec ()
     # if 1 == 1:
 CustomManager.register ( 'ArrayHelper', ArrayHelper )
     # create and start the custom manager
 # with
-with CustomManager () as manager:
-    data_proxy = manager.ArrayHelper ( (10, 10) )
-    print ( f'Array created on host: {data_proxy}' )
+with CustomManager() as manager:
+    data_proxy = manager.ArrayHelper((10, 10))
+    print(f'Array created on host: {data_proxy}')
     # confirm content
-    print ( f'Array sum: {data_proxy.sum ()}' )
+    print(f'Array sum:{data_proxy.sum()}')
     # access data in the array
     # data_proxy.setdata ( slice ( 1, 3 ), 880 )
-    data_proxy.setOnedata ( 1, 3, 403 )
+    data_proxy.setOnedata(1, 3, 403)
     # print ( data_proxy.getdata ( slice ( 0, 10 ) ) )
     # data = data_proxy.getArray()
 
     print("data_proxy =", data)
-    process_2 = Process ( target=visu, args=(data_proxy,), daemon= True )
-    process_1 = Process ( target=task, args=(data_proxy,), daemon= True )
+
+    process_2 = Process(target=visu, args=(data_proxy,), daemon= True)
+    process_1 = Process(target=task, args=(data_proxy,), daemon= True)
+
     process_2.start()
-    process_1.start ()
+    process_1.start()
     # process_1.join ()
     process_2.join()
 
-
+print ('DATA=',data)
 # process_2 = Process ( target=visu, args=(data_proxy) )
 # process_2.start()
 # process_2.join ()

@@ -15,22 +15,6 @@ class CustomManager ( BaseManager ):
 		pass
 
 
-class ArrayHelper ():
-	def __init__(self, dim):
-		self.array = np.ones(dim)
-
-	# access array data by slice
-	def getdata(self, array_slice):
-		return self.array[array_slice]
-
-	def setdata(self, array_slice, value):
-		self.array[array_slice] = value
-	def setOnedata(self, row, col, value):
-		self.array[row][col] = value
-
-	# call functions on the numpy array
-	def sum(self):
-		return self.array.sum ()
 
 # task executed in a child process
 def task(data_proxy):
