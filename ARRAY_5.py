@@ -76,7 +76,7 @@ class MainWindow(QMainWindow):
     def update_table(self):
         # self.beginResetModel()
         self.model = PandasModel(data)
-        self.model.dataChanged.emit ( QtCore.QModelIndex (), QtCore.QModelIndex () )
+        self.model.dataChanged.emit( QtCore.QModelIndex(), QtCore.QModelIndex())
         # self.model.setData(self, 1, 1)
         # self.model.load_data(data)
 
@@ -105,27 +105,27 @@ def task(array):
     # create a new numpy array backed by the raw array
     data = frombuffer(array, dtype=double, count=len(array))
     # reshape array into preferred shape
-    data = data.reshape((10, 10))
+    data = data.reshape((26, 10))
     # check the contents
     print(f'Child\n{data}')
     # increment the data
     while (True):
         data[:] += 1
-        # data[1][1] = 300
+        data[1][1] = 300
         # confirm change
         print(f'Child\n{data}')
-        time.sleep(1)
+        time.sleep(3)
 
 def visu(array):
-    # window.show ()
+
     data = frombuffer(array, dtype=double, count=len(array))
     # reshape array into preferred shape
-    data = data.reshape((10, 10))
+    data = data.reshape((26, 10))
     # while(True):
     data[1][1] = 400+1
-    print(f'Visu\n{data}')
+    # print(f'Visu\n{data}')
     # time.sleep(1)
-    app = QApplication ( sys.argv )
+    app = QApplication (sys.argv)
     window = MainWindow ()
     window.show()
     window.update_table()
@@ -135,20 +135,21 @@ def visu(array):
 # protect the entry point
 if 1 == 1:
     # define the size of the numpy array
-    n = 10 * 10
+    n = 26 * 10
     # create the shared array
     array = RawArray('d', n)
     # create a new numpy array backed by the raw array
+
     data = frombuffer(array, dtype=double, count=len(array))
     # reshape array into preferred shape
-    data = data.reshape((10, 10))
+    data = data.reshape((26, 10))
     # populate the array
     data.fill(1.0)
     # confirm contents of the new array
     print(f'Parent\n{data}')
     # create a child process
-    child1 = Process(target=task, args=(array,), daemon= True)
-    child2 = Process(target=visu, args=(array,), daemon=True)
+    child1 = Process(target=task, args=(array,), daemon= False)
+    child2 = Process(target=visu, args=(array,), daemon=False)
     # start the child process
     child1.start()
     child2.start()

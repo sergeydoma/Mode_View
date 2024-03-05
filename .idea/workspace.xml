@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c10c01c5-91ed-4cbc-9c17-462d15646eb8" name="Changes" comment="Работает 2a потокa, перед изменением">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+    <list default="true" id="c10c01c5-91ed-4cbc-9c17-462d15646eb8" name="Changes" comment="Работает 2a потокa, отображение через qView">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MANAGER.py" beforeDir="false" afterPath="$PROJECT_DIR$/MANAGER.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PIPE.py" beforeDir="false" afterPath="$PROJECT_DIR$/PIPE.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TST_ABSTRACT.py" beforeDir="false" afterPath="$PROJECT_DIR$/TST_ABSTRACT.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ARRAY_5.py" beforeDir="false" afterPath="$PROJECT_DIR$/ARRAY_5.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,7 +286,23 @@
       <option name="project" value="LOCAL" />
       <updated>1709547104120</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Работает 2a потокa, отображение через qView">
+      <option name="closed" value="true" />
+      <created>1709651747632</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1709651747632</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Работает 2a потокa, отображение через qView">
+      <option name="closed" value="true" />
+      <created>1709651878603</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1709651878603</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -312,7 +324,8 @@
     <MESSAGE value="Работает только 1 поток" />
     <MESSAGE value="Работает 2a потокa, main в отдельном потоке" />
     <MESSAGE value="Работает 2a потокa, вроде как дышит" />
-    <option name="LAST_COMMIT_MESSAGE" value="Работает 2a потокa, вроде как дышит" />
+    <MESSAGE value="Работает 2a потокa, отображение через qView" />
+    <option name="LAST_COMMIT_MESSAGE" value="Работает 2a потокa, отображение через qView" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
