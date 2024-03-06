@@ -6,34 +6,13 @@ import numpy as np
 from numpy import ones
 
 
-# task executed in a child process
-def task(pipe):
-    # define the size of the numpy array
-    # n = 10000
-    # create the numpy array
-    # data = ones ((n, n))
-    data = np.array ( [
-            [1, 9, 2],
-            [1, 0, -1],
-            [3, 5, 2],
-            [3, 3, 2],
-            [5, 8, 9],
-        ] )
-    # check some data in the array
-    print ('Data task ', data[:5, :3] )
-    # send the array via a pipe
-    pipe.send(data)
+# create a 2d numpy array
+arr = np.array([[1, 2, 3, 4],
+                [2, 0, 0, 2],
+                [3, 1, 1, 0]])
+# split the array into 2 subarrays horizontally
+sub_arrays = np.hsplit(arr, 2)
+# display the sub_arrays
+print(sub_arrays)
 
-
-# protect the entry point
-if 1 == 1:
-    # create the shared pipe
-    conn1, conn2 = Pipe ()
-    # create a child process
-    child = Process(target=task, args=(conn2,))
-    # start the child process
-    child.start ()
-    # read the data from the pipe
-    data = conn1.recv()
-    # check some data in the array
-    print ( "data out ",data[:5, :3] )
+print(sub_arrays.pop(0))

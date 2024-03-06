@@ -42,7 +42,7 @@ class PandasModel(QAbstractTableModel):
                 # See below for the data structure.
                 return QtGui.QColor ('blue')
         if role == Qt.TextAlignmentRole:
-            value = self._data.iloc[index.row ()][index.column ()]
+            value = self._data.iloc[index.row()][index.column()]
 
             if isinstance ( value, int ) or isinstance ( value, float )or isinstance ( value, double ):
                 # Align right, vertical middle.
@@ -89,8 +89,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # self.model.select()
     def update_table(self):
         # self.beginResetModel()
-        self.model1 = PandasModel(data)
-
+        self.model1 = PandasModel(dataP1)
+        self.model2 = PandasModel(dataP2)
         self.model1.dataChanged.emit( QtCore.QModelIndex(), QtCore.QModelIndex())
         # self.model.setData(self, 1, 1)
         # self.model.load_data(data)
@@ -99,9 +99,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # self.update_table()
         # self.table.setModel(self.model)
         self.tableView_plat_1.setModel ( self.model1 )
-
+        self.tableView_plat_2.setModel ( self.model2 )
         # self.setCentralWidget(self.table)
         self.model1.dataChanged.emit ( QtCore.QModelIndex (), QtCore.QModelIndex () )
+        self.model2.dataChanged.emit ( QtCore.QModelIndex (), QtCore.QModelIndex () )
         # self.table.close()
         # self.table.show()
         # self.endResetModel()
@@ -119,30 +120,34 @@ data = np.array([
 # task executed in a child process
 def task(array):
     # create a new numpy array backed by the raw array
-    data1 = frombuffer(array, dtype=double, count=len(array))
+    dataAll = frombuffer(array, dtype=double, count=len(array))
     # reshape array into preferred shape
-    data1 = data1.reshape((26, 10))
-
-
+    dataAll = dataAll.reshape((26, 40))
+    dataSumm = np.hsplit(dataAll, 4)
+    dataP1 = dataSumm.pop(0)
+    dataP2 = dataSumm.pop(1)
     # check the contents
-    print(f'Child\n{data}')
+    print(f'Child\n{dataP2}')
     # increment the data
     while (True):
-        data1[:] += 1
-        data1[1][1] = 300
+        dataP1[:] += 1
+        dataP1[1][1] =str(300)
+        dataP2[:] += 20
         # confirm change
         print(f'Child\n{data}')
         time.sleep(1)
 
 def visu(array):
 
-    data1 = frombuffer(array, dtype=double, count=len(array))
+    dataAll = frombuffer(array, dtype=double, count=len(array))
     # reshape array into preferred shape
-    data1 = data1.reshape((26, 10))
-
+    dataAll = dataAll.reshape((26, 40))
+    dataSumm = np.hsplit(dataAll,4)
     # while(True):
-    data1[1][1] = 400+1
-
+    dataP1 = dataSumm.pop(0)
+    dataP2 = dataSumm.pop(1)
+    dataP1[1][2] = 25
+    dataP2[1][2] = 500 + 1
     app = QApplication (sys.argv)
     window = MainWindow ()
     window.show()
@@ -153,19 +158,21 @@ def visu(array):
 # protect the entry point
 if 1 == 1:
     # define the size of the numpy array
-    n = 26 * 10
+    n = 26 * 40
     # create the shared array
     array = RawArray('d', n)
     # create a new numpy array backed by the raw array
 
-    data1 = frombuffer(array, dtype=double, count=len(array))
+    dataAll = frombuffer(array, dtype=double, count=len(array))
 
     # reshape array into preferred shape
-    data1 = data1.reshape(26, 10)
-
+    dataAll = dataAll.reshape(26, 40)
     # populate the array
-    data1.fill(1.0)
-    data = pd.DataFrame ( data1,
+    dataAll.fill(1.0)
+    dataSumm=np.hsplit(dataAll, 4)
+    dataP1 = dataSumm.pop(0)
+    dataP2 = dataSumm.pop(1)
+    dataP1 = pd.DataFrame( dataP1,
       columns=['Калал 1', 'Калал 2', 'Калал 3', 'Калал 4', 'Калал 5',
                       'Калал 6', 'Калал 7', 'Калал 8', 'Калал 9', 'Калал 10'],
       index=['Режим работы:', 'Режим работы канала', 'Допустимые диапазоны:',
@@ -181,10 +188,27 @@ if 1 == 1:
              'Сопр. изоляции 2 ниже доп.', 'Сопр. шлейфа ниже доп.', 'Сопр. шлейфа выше доп.',
              'Напряжение на входе 1 выше доп.', 'Напряжение на входе 2 выше доп.'] )
 
+    dataP2 = pd.DataFrame(dataP2,
+                            columns=['Калал 1', 'Калал 2', 'Калал 3', 'Калал 4', 'Калал 5',
+                                     'Калал 6', 'Калал 7', 'Калал 8', 'Калал 9', 'Калал 10'],
+                            index=['Режим работы:', 'Режим работы канала', 'Допустимые диапазоны:',
+                                   'Диапазон сопр. изоляции авар.',
+                                   'Диапазон сопр. шлейфа авар.', 'Диапазон сопр. изоляции предупр.',
+                                   'Диапазон сопр. шлейфа предупр.',
+                                   'Уставки:', 'Уставка напряжения на входе', 'Уставка сопр. изоляции 1',
+                                   'Уставка сопр. изоляции 2',
+                                   'Уставка сопр. шлейфа', 'Текущие значения:', 'Сопр. изоляции 1', 'Сопр. изоляции 1',
+                                   'Сопр. шлейфа', 'Напряжение на входе 1', 'Напряжение на входе 2',
+                                   'Расчетное знач. объем. наряжение', 'Авария - "А", предупрежд. - "П"',
+                                   'Сопр. изоляции 1 ниже доп.',
+                                   'Сопр. изоляции 2 ниже доп.', 'Сопр. шлейфа ниже доп.', 'Сопр. шлейфа выше доп.',
+                                   'Напряжение на входе 1 выше доп.', 'Напряжение на входе 2 выше доп.'] )
+
+
     # confirm contents of the new array
     print(f'Parent\n{data}')
     # create a child process
-    child1 = Process(target=task, args=(array,), daemon= False)
+    child1 = Process(target=task, args=(array,), daemon=True)
     child2 = Process(target=visu, args=(array,), daemon=True)
     # start the child process
     child2.start()
