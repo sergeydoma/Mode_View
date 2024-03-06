@@ -7,6 +7,8 @@
     <list default="true" id="c10c01c5-91ed-4cbc-9c17-462d15646eb8" name="Changes" comment="Ускорил за счет внутреннего таймера">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ARRAY_5.py" beforeDir="false" afterPath="$PROJECT_DIR$/ARRAY_5.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edit_dialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/edit_dialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pmk20_001.ui" beforeDir="false" afterPath="$PROJECT_DIR$/pmk20_001.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

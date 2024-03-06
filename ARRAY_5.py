@@ -5,11 +5,14 @@ from multiprocessing import Process
 from multiprocessing.sharedctypes import RawArray
 
 import numpy as np
-from PySide6 import QtCore
+import pandas as pd
+from PySide6 import QtCore, QtGui
 from PySide6.QtCore import QAbstractTableModel, Qt, QTimer
 from PySide6.QtWidgets import QTableView, QMainWindow, QApplication
 from numpy import frombuffer
 from numpy import double
+from edit_dialog import Ui_MainWindow
+
 
 #region Absract Model
 class PandasModel(QAbstractTableModel):
@@ -33,8 +36,18 @@ class PandasModel(QAbstractTableModel):
     def data(self, index, role=Qt.DisplayRole):
         if index.isValid():
             if role == Qt.DisplayRole or role == Qt.EditRole:
-                value = self._data[index.row(), index.column()]
+                value = self._data.iloc[index.row(), index.column()]
                 return str(value)
+            if role == Qt.BackgroundRole and index.row() == 0:
+                # See below for the data structure.
+                return QtGui.QColor ('blue')
+        if role == Qt.TextAlignmentRole:
+            value = self._data.iloc[index.row ()][index.column ()]
+
+            if isinstance ( value, int ) or isinstance ( value, float )or isinstance ( value, double ):
+                # Align right, vertical middle.
+                return Qt.AlignVCenter + Qt.AlignRight
+
 
     def setData(self, index, value, role):
         if role == Qt.EditRole:
@@ -42,32 +55,33 @@ class PandasModel(QAbstractTableModel):
                 value = int(value)
             except ValueError:
                 return False
-            self._data[index.row(), index.column()] = value
+            self._data.iloc[index.row(), index.column()] = value
             return True
         return False
 
-
-
-
-    # def load_data(self, data):
-    #     self.beginResetModel()
-    #     self.input_address = data[0]
-    #     self.input_numbers = data[1]
-    #     self.column_count = 2
-    #     self.row_count = len(self.input_numbers)
-    #     self.endResetModel()
-
     def flags(self, index):
         return Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsEditable
+
+    def headerData(self, section, orientation, role):
+        # section is the index of the column/row.
+        if role == Qt.DisplayRole:
+            if orientation == Qt.Horizontal:
+                return str (self._data.columns[section] )
+
+            if orientation == Qt.Vertical:
+                return str (self._data.index[section] )
 #endregion
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
+        Ui_MainWindow.__init__(self)
+        self.setupUi(self)
+
         self.table = QTableView()
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_table)
-
+        # self.tableView_Arhive.setModel ( self.model )
         # self.timer.timeout(self.update_table)
         self.timer.start(60 * 10)
 
@@ -75,17 +89,19 @@ class MainWindow(QMainWindow):
         # self.model.select()
     def update_table(self):
         # self.beginResetModel()
-        self.model = PandasModel(data)
-        self.model.dataChanged.emit( QtCore.QModelIndex(), QtCore.QModelIndex())
+        self.model1 = PandasModel(data)
+
+        self.model1.dataChanged.emit( QtCore.QModelIndex(), QtCore.QModelIndex())
         # self.model.setData(self, 1, 1)
         # self.model.load_data(data)
 
 
         # self.update_table()
-        self.table.setModel(self.model)
+        # self.table.setModel(self.model)
+        self.tableView_plat_1.setModel ( self.model1 )
 
-        self.setCentralWidget(self.table)
-        self.model.dataChanged.emit ( QtCore.QModelIndex (), QtCore.QModelIndex () )
+        # self.setCentralWidget(self.table)
+        self.model1.dataChanged.emit ( QtCore.QModelIndex (), QtCore.QModelIndex () )
         # self.table.close()
         # self.table.show()
         # self.endResetModel()
@@ -103,28 +119,30 @@ data = np.array([
 # task executed in a child process
 def task(array):
     # create a new numpy array backed by the raw array
-    data = frombuffer(array, dtype=double, count=len(array))
+    data1 = frombuffer(array, dtype=double, count=len(array))
     # reshape array into preferred shape
-    data = data.reshape((26, 10))
+    data1 = data1.reshape((26, 10))
+
+
     # check the contents
     print(f'Child\n{data}')
     # increment the data
     while (True):
-        data[:] += 1
-        data[1][1] = 300
+        data1[:] += 1
+        data1[1][1] = 300
         # confirm change
         print(f'Child\n{data}')
         time.sleep(1)
 
 def visu(array):
 
-    data = frombuffer(array, dtype=double, count=len(array))
+    data1 = frombuffer(array, dtype=double, count=len(array))
     # reshape array into preferred shape
-    data = data.reshape((26, 10))
+    data1 = data1.reshape((26, 10))
+
     # while(True):
-    data[1][1] = 400+1
-    # print(f'Visu\n{data}')
-    # time.sleep(1)
+    data1[1][1] = 400+1
+
     app = QApplication (sys.argv)
     window = MainWindow ()
     window.show()
@@ -140,11 +158,29 @@ if 1 == 1:
     array = RawArray('d', n)
     # create a new numpy array backed by the raw array
 
-    data = frombuffer(array, dtype=double, count=len(array))
+    data1 = frombuffer(array, dtype=double, count=len(array))
+
     # reshape array into preferred shape
-    data = data.reshape((26, 10))
+    data1 = data1.reshape(26, 10)
+
     # populate the array
-    data.fill(1.0)
+    data1.fill(1.0)
+    data = pd.DataFrame ( data1,
+      columns=['Калал 1', 'Калал 2', 'Калал 3', 'Калал 4', 'Калал 5',
+                      'Калал 6', 'Калал 7', 'Калал 8', 'Калал 9', 'Калал 10'],
+      index=['Режим работы:', 'Режим работы канала', 'Допустимые диапазоны:',
+             'Диапазон сопр. изоляции авар.',
+             'Диапазон сопр. шлейфа авар.', 'Диапазон сопр. изоляции предупр.',
+             'Диапазон сопр. шлейфа предупр.',
+             'Уставки:', 'Уставка напряжения на входе', 'Уставка сопр. изоляции 1',
+             'Уставка сопр. изоляции 2',
+             'Уставка сопр. шлейфа', 'Текущие значения:', 'Сопр. изоляции 1', 'Сопр. изоляции 1',
+             'Сопр. шлейфа', 'Напряжение на входе 1', 'Напряжение на входе 2',
+             'Расчетное знач. объем. наряжение', 'Авария - "А", предупрежд. - "П"',
+             'Сопр. изоляции 1 ниже доп.',
+             'Сопр. изоляции 2 ниже доп.', 'Сопр. шлейфа ниже доп.', 'Сопр. шлейфа выше доп.',
+             'Напряжение на входе 1 выше доп.', 'Напряжение на входе 2 выше доп.'] )
+
     # confirm contents of the new array
     print(f'Parent\n{data}')
     # create a child process
