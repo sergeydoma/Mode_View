@@ -124,8 +124,10 @@ def task(array):
     # reshape array into preferred shape
     dataAll = dataAll.reshape((26, 40))
     dataSumm = np.hsplit(dataAll, 4)
-    dataP1 = dataSumm.pop(0)
-    dataP2 = dataSumm.pop(1)
+    dataP1 = dataSumm[0]
+    dataP2 = dataSumm[1]
+    dataP3 = dataSumm[2]
+    dataP4 = dataSumm[3]
     # check the contents
     print(f'Child\n{dataP2}')
     # increment the data
@@ -144,8 +146,11 @@ def visu(array):
     dataAll = dataAll.reshape((26, 40))
     dataSumm = np.hsplit(dataAll,4)
     # while(True):
-    dataP1 = dataSumm.pop(0)
-    dataP2 = dataSumm.pop(1)
+    dataP1 = dataSumm[0]
+    dataP2 = dataSumm[1]
+    dataP3 = dataSumm[2]
+    dataP4 = dataSumm[3]
+    
     dataP1[1][2] = 25
     dataP2[1][2] = 500 + 1
     app = QApplication (sys.argv)
@@ -170,8 +175,10 @@ if 1 == 1:
     # populate the array
     dataAll.fill(1.0)
     dataSumm=np.hsplit(dataAll, 4)
-    dataP1 = dataSumm.pop(0)
-    dataP2 = dataSumm.pop(1)
+    dataP1 = dataSumm[0]
+    dataP2 = dataSumm[1]
+    dataP3 = dataSumm[2]
+    dataP4 = dataSumm[3]
     dataP1 = pd.DataFrame( dataP1,
       columns=['Калал 1', 'Калал 2', 'Калал 3', 'Калал 4', 'Калал 5',
                       'Калал 6', 'Калал 7', 'Калал 8', 'Калал 9', 'Калал 10'],

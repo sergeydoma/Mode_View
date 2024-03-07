@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c10c01c5-91ed-4cbc-9c17-462d15646eb8" name="Changes" comment="Таблица применена для 2-й вкладке">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ARRAY_5.py" beforeDir="false" afterPath="$PROJECT_DIR$/ARRAY_5.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edit_dialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/edit_dialog.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pmk20_001.ui" beforeDir="false" afterPath="$PROJECT_DIR$/pmk20_001.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tst001.py" beforeDir="false" afterPath="$PROJECT_DIR$/tst001.py" afterDir="false" />
-    </list>
+    <list default="true" id="c10c01c5-91ed-4cbc-9c17-462d15646eb8" name="Changes" comment="Работают 2 таблицы без расширения POP&#10;через индекс" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,42 +32,42 @@
     <option name="showMembers" value="true" />
     <option name="sortKey" value="BY_TIME_ASCENDING" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.ARGUMENT.executor": "Run",
-    "Python.ARRAY_5.executor": "Debug",
-    "Python.GLOBAL_VARIABLE.executor": "Debug",
-    "Python.MANAGER.executor": "Run",
-    "Python.Manager_5.executor": "Debug",
-    "Python.NumpyManager2.executor": "Debug",
-    "Python.PIPE.executor": "Debug",
-    "Python.RawArray.executor": "Debug",
-    "Python.Shared_Memory.executor": "Debug",
-    "Python.TST_ABSTRACT.executor": "Debug",
-    "Python.base.executor": "Debug",
-    "Python.main.executor": "Run",
-    "Python.managers.executor": "Run",
-    "Python.popen_fork.executor": "Debug",
-    "Python.process.executor": "Debug",
-    "Python.pydevd.executor": "Run",
-    "Python.tabliWidget.executor": "Debug",
-    "Python.test_1.executor": "Run",
-    "Python.test_3.executor": "Run",
-    "Python.tst001.executor": "Debug",
-    "Python.tst002.executor": "Debug",
-    "Python.tst003.executor": "Debug",
-    "Python.tstTimer.executor": "Debug",
-    "Python.util.executor": "Debug",
-    "Python.visuPotok001.executor": "Debug",
-    "Python.while.executor": "Debug",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/admin123/PycharmProjects/testModel_View",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.ARGUMENT.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ARRAY_5.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.GLOBAL_VARIABLE.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.MANAGER.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Manager_5.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.NumpyManager2.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.PIPE.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.RawArray.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.Shared_Memory.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.TST_ABSTRACT.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.base.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.managers.executor&quot;: &quot;Run&quot;,
+    &quot;Python.popen_fork.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.process.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.pydevd.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tabliWidget.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.test_1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_3.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tst001.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.tst002.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.tst003.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.tstTimer.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.util.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.visuPotok001.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.while.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/admin123/PycharmProjects/testModel_View&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python.ARRAY_5">
     <configuration name="ARRAY_5" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="testModel_View" />
@@ -337,7 +331,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709732094992</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Работают 2 таблицы без расширения POP&#10;через индекс">
+      <option name="closed" value="true" />
+      <created>1709815045085</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1709815045085</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -375,7 +377,8 @@
     <MESSAGE value="Убираю 1 поток" />
     <MESSAGE value="Ускорил за счет внутреннего таймера" />
     <MESSAGE value="Таблица применена для 2-й вкладке" />
-    <option name="LAST_COMMIT_MESSAGE" value="Таблица применена для 2-й вкладке" />
+    <MESSAGE value="Работают 2 таблицы без расширения POP&#10;через индекс" />
+    <option name="LAST_COMMIT_MESSAGE" value="Работают 2 таблицы без расширения POP&#10;через индекс" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
