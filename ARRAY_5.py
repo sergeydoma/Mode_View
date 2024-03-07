@@ -77,6 +77,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super().__init__()
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
+        self.Button_con.clicked.connect(self.defAddMb)
 
         self.table = QTableView()
         self.timer = QTimer(self)
@@ -84,20 +85,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # self.tableView_Arhive.setModel ( self.model )
         # self.timer.timeout(self.update_table)
         self.timer.start(60 * 10)
-
+        self.dataP4 = None
         # self.update_table()
         # self.model.select()
     def update_table(self):
         # self.beginResetModel()
         self.model1 = PandasModel(dataP1)
         self.model2 = PandasModel(dataP2)
+        self.dataP4 = dataP4
         self.model1.dataChanged.emit( QtCore.QModelIndex(), QtCore.QModelIndex())
         # self.model.setData(self, 1, 1)
-        # self.model.load_data(data)
-
-
-        # self.update_table()
-        # self.table.setModel(self.model)
         self.tableView_plat_1.setModel ( self.model1 )
         self.tableView_plat_2.setModel ( self.model2 )
         # self.setCentralWidget(self.table)
@@ -108,7 +105,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # self.endResetModel()
         # self.tableView.setModel(PandasModel)
         # time.sleep(5)
-
+    
+    def defAddMb(self):
+        # self.lineEdit_1.setAlignment(Qt.AlignVCenter | Qt.AlignHCenter)
+        
+        tCombo1 = int(self.comboBox_1.currentText (), 16)
+        tCombo2 = int(self.comboBox_2.currentText (), 16)
+        intCombo = tCombo1 * 16 + tCombo2
+        # dat.set_id_serial (intCombo)
+        print('ВВеден номер = ', intCombo)
+        dataP4[0][0] = intCombo
+        self.label_info.setText(str(hex(intCombo)))
 data = np.array([
   [1, 9, 2],
   [1, 0, -1],
@@ -138,6 +145,7 @@ def task(array):
         # confirm change
         print(f'Child\n{data}')
         time.sleep(1)
+        print ('P4 00 = ', dataP4[0][0])
 
 def visu(array):
 
@@ -179,6 +187,7 @@ if 1 == 1:
     dataP2 = dataSumm[1]
     dataP3 = dataSumm[2]
     dataP4 = dataSumm[3]
+   
     dataP1 = pd.DataFrame( dataP1,
       columns=['Калал 1', 'Калал 2', 'Калал 3', 'Калал 4', 'Калал 5',
                       'Калал 6', 'Калал 7', 'Калал 8', 'Калал 9', 'Калал 10'],

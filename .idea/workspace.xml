@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c10c01c5-91ed-4cbc-9c17-462d15646eb8" name="Changes" comment="Работают 2 таблицы без расширения POP&#10;через индекс" />
+    <list default="true" id="c10c01c5-91ed-4cbc-9c17-462d15646eb8" name="Changes" comment="Работают 2 таблицы без расширения POP&#10;через индекс">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ARRAY_5.py" beforeDir="false" afterPath="$PROJECT_DIR$/ARRAY_5.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -339,7 +342,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709815045085</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Работают 2 таблицы без расширения POP&#10;через индекс">
+      <option name="closed" value="true" />
+      <created>1709815182677</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1709815182677</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
