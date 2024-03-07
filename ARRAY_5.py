@@ -71,7 +71,7 @@ class PandasModel(QAbstractTableModel):
             if orientation == Qt.Vertical:
                 return str (self._data.index[section] )
 #endregion
-
+#region MainWindow
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
@@ -116,6 +116,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         print('ВВеден номер = ', intCombo)
         dataP4[0][0] = intCombo
         self.label_info.setText(str(hex(intCombo)))
+        
+#endregion
 data = np.array([
   [1, 9, 2],
   [1, 0, -1],
@@ -124,6 +126,7 @@ data = np.array([
   [5, 8, 9],
 ])
 
+#region Task(array)
 # task executed in a child process
 def task(array):
     # create a new numpy array backed by the raw array
@@ -147,6 +150,9 @@ def task(array):
         time.sleep(1)
         print ('P4 00 = ', dataP4[0][0])
 
+#endregion
+
+#region Visu(array)
 def visu(array):
 
     dataAll = frombuffer(array, dtype=double, count=len(array))
@@ -167,7 +173,8 @@ def visu(array):
     window.update_table()
     # time.sleep(1)
     app.exec()
-
+    
+#endregion
 # protect the entry point
 if 1 == 1:
     # define the size of the numpy array

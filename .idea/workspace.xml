@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c10c01c5-91ed-4cbc-9c17-462d15646eb8" name="Changes" comment="Работают 2 таблицы без расширения POP&#10;через индекс">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="c10c01c5-91ed-4cbc-9c17-462d15646eb8" name="Changes" comment="вывод адреса в базу">
       <change beforePath="$PROJECT_DIR$/ARRAY_5.py" beforeDir="false" afterPath="$PROJECT_DIR$/ARRAY_5.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +37,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Python.ARGUMENT.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ARRAY_5.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.ARRAY_5.executor&quot;: &quot;Run&quot;,
     &quot;Python.GLOBAL_VARIABLE.executor&quot;: &quot;Debug&quot;,
     &quot;Python.MANAGER.executor&quot;: &quot;Run&quot;,
     &quot;Python.Manager_5.executor&quot;: &quot;Debug&quot;,
@@ -350,7 +349,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709815182677</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="вывод адреса в базу">
+      <option name="closed" value="true" />
+      <created>1709819940613</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1709819940613</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -389,7 +396,8 @@
     <MESSAGE value="Ускорил за счет внутреннего таймера" />
     <MESSAGE value="Таблица применена для 2-й вкладке" />
     <MESSAGE value="Работают 2 таблицы без расширения POP&#10;через индекс" />
-    <option name="LAST_COMMIT_MESSAGE" value="Работают 2 таблицы без расширения POP&#10;через индекс" />
+    <MESSAGE value="вывод адреса в базу" />
+    <option name="LAST_COMMIT_MESSAGE" value="вывод адреса в базу" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
